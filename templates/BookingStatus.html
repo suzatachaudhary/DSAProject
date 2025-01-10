@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Status</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        .available {
+            background-color: #90ee90; /* Light green for available seats */
+        }
+        .booked {
+            background-color: #ffcccb; /* Light red for booked seats */
+        }
+    </style>
+</head>
+<body>
+    <h1>Booking Status</h1>
+    <p>Movie ID: {{ movie_id }}</p>
+    <p>{{ message }}</p>
+    <p>Seats Available: {{ available_seats }}</p>
+
+    <h2>Seat Layout</h2>
+    {% if seat_layout %}
+    <table>
+        {% for row in seat_layout %}
+        <tr>
+            {% for seat in row %}
+            <td class="{{ 'available' if seat == 'O' else 'booked' }}">{{ seat }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No seat layout available</p>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}">Go Back to Home</a>
+    <a href="{{ url_for('Booknow') }}">Go Back to Movies</a>
+</body>
+</html>

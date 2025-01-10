@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Movie Booking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="home-container">
+        <header>
+            <div class="nav-bar">
+                <div class="logo">
+                    <h1><span style="color: red;">Movie</span> <span style="color: yellow;">Booking</span> <span style="color: green;">System</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="icon-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{url_for('about')}}" class="icon-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="{{ url_for('Booknow')}}" class="icon-link"><i class="fas fa-ticket-alt"></i> Movies</a></li>
+                    </ul>
+                </nav>
+                <div class="header-right">
+                    <a href="#">Help</a> | <a href="#">Contact Us</a>
+                </div>
+                <div class="profile-container">
+                    <i class="fas fa-user-circle profile-icon" onclick="toggleDropdown()"></i>
+                    <div id="dropdown-content" class="dropdown-content">
+            
+                           <p class="username">{{ user.name }}</p>
+                           <a href="{{ url_for('logout') }}">Logout</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="welcome-section">
+                <div class="background-image">
+                    <div class="overlay">
+                        <h2>Welcome to the Movie Booking System!</h2>
+                        <p>We have {{ total_movies }} movies ready for booking. Browse and enjoy your favorite shows!</p>
+                        <a href="{{ url_for('Booknow') }}" class="explore-btn">Movies</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; {{ current_year }}parul Movie Booking System. Watch your favorite movie!</p>
+        </footer>
+    </div>
+</body>
+</html>

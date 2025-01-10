@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Search.css') }}">
+</head>
+<body>
+    <h1>Search Results for "{{ query }}"</h1>
+
+    {% if movies %}
+        <ul>
+        {% for movie in movies %}
+            <li>
+              <img src="{{ movie.image_url }}" alt="{{ movie.title }} Poster" width="150" height="200">
+              <div class="movie-info">
+                <h2>{{ movie.title }}</h2>
+                <p>{{ movie.description }}</p>
+                <p><strong>Genre:</strong> {{ movie.genre }}</p>
+                <p><strong>Rating:</strong> {{ movie.rating }}</p>
+                <p><strong>available_seats:</strong> {{ movie.available_seats}}</p>
+                <a href="{{ url_for('BookingStatus', movie_id=movie.id) }}">View Details</a>
+                <form action="{{ url_for('book_movie', movie_id=movie.id) }}" method="POST">
+                  <button type="submit" class="book-btn">Book Now</button>
+                </form>
+              </div>
+              </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No movies found matching your query.</p>
+    {% endif %}
+
+    <a href="{{ url_for('Booknow') }}">Back to movies</a>
+    <footer>
+      <p>&copy; 2025 Parul Movie Booking System. Enjoy your movie experience!</p>
+  </footer>
+</body>
+</html>

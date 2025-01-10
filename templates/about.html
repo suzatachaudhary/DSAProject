@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Movie Booking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="about-container">
+        <header>
+            <div class="nav-bar">
+                <div class="logo">
+                    <h1><span style="color: red;">Movie</span> <span style="color: yellow;">Booking</span> <span style="color: green;">System</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{ url_for('Booknow') }}"><i class="fas fa-film"></i> Movies</a></li>
+                        <li><a href="{{ url_for('about') }}" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="about-section">
+                <h2>About Movie Booking System</h2>
+                <p>
+                    Welcome to the <strong>Movie Booking System</strong>, your one-stop solution for booking your favorite movies online. 
+                    Our platform is designed to provide a seamless and user-friendly experience for movie enthusiasts. Whether you’re looking for 
+                    the latest blockbuster or an evergreen classic, we’ve got you covered.
+                </p>   
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; {{ current_year }} parul Movie Booking System. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

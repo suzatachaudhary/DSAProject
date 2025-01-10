@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Movies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Booknow.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="book-now-container">
+        <header>
+            <div class="nav-bar">
+                <div class="logo">
+                    <h1><span style="color: red;">Movie</span> <span style="color: yellow;">Booking</span> <span style="color: green;">System</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}" class="icon-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{url_for('about') }}" class="icon-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="{{ url_for('Booknow') }}" class="icon-link"><i class="fas fa-ticket-alt"></i> Book Now</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="movies-section">
+              <div class="search-container">
+                <form action="{{ url_for('search') }}" method="get">
+                    <input type="text" name="query" class="search-input" placeholder="Search for movies..." value="{{ query|default('') }}" required>
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+            </div>
+                <h2>Available Movies</h2>
+                <div class="movies-grid">
+                    {% for movie in movies %}
+                    <div class="movie-card">
+                        <!-- Display Movie Image -->
+                        <img src="{{ movie.image_url }}" alt="{{ movie.title }} Poster" class="movie-image">
+                        
+                        <!-- Display Movie Details -->
+                        <div class="movie-info">
+                            <h3>{{ movie.title }}</h3>
+                            <p><strong>Genre:</strong> {{ movie.genre }}</p>
+                            <p><strong>Rating:</strong> {{ movie.rating }}</p>
+                            <p>{{ movie.description }}</p>
+                            
+                            <!-- Book Now Button -->
+                            <form action="{{ url_for('book_movie', movie_id=movie.id) }}" method="POST">
+                                <button type="submit" class="book-btn">Book Now</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; {{ current_year }} Parul Movie Booking System. Watch your favorite movie!</p>
+        </footer>
+    </div>
+</body>
+</html>
